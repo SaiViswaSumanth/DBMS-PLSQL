@@ -1,0 +1,64 @@
+create table branch(
+code varchar(4) not null primary key,
+name varchar(5),
+assets number(8));
+
+create table customer(
+ssn number(4) not null primary key,
+name varchar(5),
+place varchar(5));
+
+create table account(
+accno varchar(4),
+ssn number(5) references customer(ssn),
+code varchar(3) references branch(code),
+balance number(7));
+
+insert into branch values('&code','&name',&assets);
+/
+insert into customer values(&ssn,'&name','&place');
+/
+insert into account values('&accno',&ssn,'&code',&balance);
+/
+
+SQL> select * from branch;
+
+CODE NAME      ASSETS
+---- ----- ----------
+B1   MSR	10000
+B2   RNR	20000
+B3   SMR	15000
+B4   SKR	25000
+
+SQL> select * from customer;
+
+       SSN NAME  PLACE
+---------- ----- -----
+	 1 Ram	 BNG
+	 2 Asha  MNG
+	 3 Usha  MYS
+	 4 Sri	 DEL
+
+SQL> select * from account;
+
+ACCN	    SSN COD    BALANCE
+---- ---------- --- ----------
+A1	      1 B1	100000
+A2	      1 B1	200000
+A3	      2 B2	100000
+A4	      3 B2	100000
+A5	      3 B2	100000
+A5	      3 B2	100000
+A7	      4 B2	200000
+
+SQL> set serveroutput on(every time after change to sql file)
+SQL> @display.sql
+
+SQL> set serveroutput on
+SQL> @update.sql
+
+
+
+
+
+
