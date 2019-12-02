@@ -1,8 +1,0 @@
-
-BEGIN
-      UPDATE ACCOUNT
-      SET BALANCE=BALANCE+(BALANCE*0.1)
-      WHERE ssn=1;
-      COMMIT;
-END;
-/
